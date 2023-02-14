@@ -18,6 +18,4 @@ def is_anagram(s, t):
             dict_t[j] = 0
         dict_t[j] += 1
 
-    if dict_s != dict_t:
-        return False
-    return True
+    return dict_s == dict_t
