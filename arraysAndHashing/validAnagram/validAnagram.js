@@ -2,33 +2,22 @@
 // is an anagram of s, and false otherwise
 
 var isAnagram = function(s, t) {
-    if (s.length !== t.length) {
-        return false;
+    if (s.length !== t.length) return false;
+
+    let objS = {};
+    let objT = {};
+
+    for (let i = 0; i < s.length; i++) {
+        objS[s[i]] = (objS[s[i]] || 0) + 1;
+    };
+
+    for (let j = 0; j< t.length; j++) {
+        objT[t[j]] = (objT[t[j]] || 0) + 1;
+    };
+
+    for (let key in objS) {
+        if (objS[key] !== objT[key]) return false;
     }
 
-    let obj1 = {};
-    let obj2 = {};
-
-    for (let i of s) {
-        if (obj1[i] === undefined) {
-            obj1[i] = 1;
-        } else {
-            obj1[i] += 1;
-        }
-    }
-
-    for (let j of t) {
-        if (obj2[j] === undefined) {
-            obj2[j] = 1;
-        } else {
-            obj2[j] += 1;
-        }
-    }
-
-    for (let key in obj1) {
-        if (obj1[key] !== obj2[key]) {
-            return false;
-        }
-    }
     return true;
 };
