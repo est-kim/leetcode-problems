@@ -24,7 +24,6 @@ var isPalindrome = function(s) {
             mid--;
         }
     }
-    
     return true;
 
 };
