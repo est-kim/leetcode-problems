@@ -1,20 +1,23 @@
-// function accepts an array and a value
-// loop the array and check if current array element
-// is equal to value, return index at which the element
-// is found. if never found, return -1
+// Given an array of integers nums which is sorted in ascending order,
+// and an integer target, write a function to search target in nums.
+// If target exists, then return its index. Otherwise, return -1.
 
-const binarySearch = (arr, val) => {
+// You must write an algorithm with O(log n) runtime complexity.
+
+// source: https://leetcode.com/problems/binary-search/
+
+var search = function(nums, target) {
     let left = 0;
-    let right = arr.length - 1;
+    let right = nums.length - 1;
     while (left <= right) {
         let middle = Math.floor((left + right) / 2);
-        if (val === arr[middle]) {
-            return middle;
-        } else if (val < arr[middle]) {
+        if (target < nums[middle]) {
             right = middle - 1;
-        } else {
+        } else if (target > nums[middle]) {
             left = middle + 1;
+        } else {
+            return middle;
         }
     }
     return -1;
-}
+};
