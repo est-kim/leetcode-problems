@@ -77,3 +77,21 @@ class Node {
         return data;
     }
 }
+
+
+// Iterative method
+const PostOrder2 = (root) => {
+    const stack1 = [root],
+    stack2 = [];
+    let curr;
+
+    // left -> right -> parent
+    while (stack1.length) {
+        curr = stack1.pop();
+        if (curr.left) stack1.push(curr.left);
+        if (curr.right) stack1.push(curr.right);
+        stack2.push(curr);
+    }
+
+    return stack2.reverse();
+}
