@@ -92,5 +92,23 @@ const DFSPreOrder = (root) => {
         if (curr.left) stack.push(curr.left)
     }
 
-    return traversed; 
+    return traversed;
+}
+
+// iterative method #2
+const DFSPreOrder2 = (root) => {
+    const stack = [];
+    const traversed = [];
+    let curr = root;
+
+    while (stack.length || curr) {
+        while (curr) {
+            traversed.push(curr.val);
+            stack.push(curr);
+            curr = curr.left;
+        }
+        curr = stack.pop();
+        curr = curr.right;
+    }
+    return traversed;
 }
