@@ -70,9 +70,9 @@ class BinarySearchTree {
     let data = [];
     let current = this.root;
     function traverse(node) {
-        data.push(node.value);
-        if (node.left) traverse(node.left);
-        if (node.right) traverse(node.right)
+      data.push(node.value);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
     }
     traverse(current);
     return data;
@@ -81,34 +81,59 @@ class BinarySearchTree {
 
 // iterative method
 const DFSPreOrder = (root) => {
-    const stack = [root];
-    const traversed = [];
-    let curr;
+  const stack = [root];
+  const traversed = [];
+  let curr;
 
-    while (stack.length) {
-        curr = stack.pop();
-        traversed.push(curr.val);
-        if (curr.right) stack.push(curr.right)
-        if (curr.left) stack.push(curr.left)
-    }
+  while (stack.length) {
+    curr = stack.pop();
+    traversed.push(curr.val);
+    if (curr.right) stack.push(curr.right);
+    if (curr.left) stack.push(curr.left);
+  }
 
-    return traversed;
-}
+  return traversed;
+};
 
 // iterative method #2
 const DFSPreOrder2 = (root) => {
-    const stack = [];
-    const traversed = [];
-    let curr = root;
+  const stack = [];
+  const traversed = [];
+  let curr = root;
 
-    while (stack.length || curr) {
-        while (curr) {
-            traversed.push(curr.val);
-            stack.push(curr);
-            curr = curr.left;
-        }
-        curr = stack.pop();
-        curr = curr.right;
+  while (stack.length || curr) {
+    while (curr) {
+      traversed.push(curr.val);
+      stack.push(curr);
+      curr = curr.left;
     }
-    return traversed;
-}
+    curr = stack.pop();
+    curr = curr.right;
+  }
+  return traversed;
+};
+
+// leetcode recursive practice
+var preorderTraversal = function (root) {
+  //         10
+  //.     5      15
+  //.   1   6  12  18     [10, 5, 1, 6, 15, 12, 18]
+
+  // initialize data = empty array
+  let data = [];
+  // create helper function traverse, passing in node
+  const traverse = (node) => {
+    // base case if (!node) return empty array;
+    if (!node) return [];
+    // push node.val into data
+    data.push(node.val);
+    // traverse node.left
+    traverse(node.left);
+    // traverse node.right
+    traverse(node.right);
+  };
+  // invoke traverse passing in root
+  traverse(root);
+  // return data;
+  return data;
+};

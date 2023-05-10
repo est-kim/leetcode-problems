@@ -95,3 +95,25 @@ const DFSInOrder2 = (root) => {
   }
   return traversed;
 };
+
+// leetcode recursive practice
+var inorderTraversal = function (root) {
+  // initialize traversed = empty array
+  let traversed = [];
+  // create helper function traverse to recursively call on node.left & node.right
+  function traverse(node) {
+    // base case if (!node), return empty array
+    if (!node) return [];
+    // traverse node.left
+    traverse(node.left);
+    // push node.val
+    traversed.push(node.val);
+    // traverse node.right
+    traverse(node.right);
+  }
+
+  // invoke traverse(root)
+  traverse(root);
+  // return traversed
+  return traversed;
+};
