@@ -18,3 +18,17 @@ var chunk = function(arr, size) {
     }
     return res;
 };
+
+// improved time complexity solution
+
+var chunk2 = function(arr, size) {
+    const res = [];
+    let index = 0;
+
+    while (index < arr.length) {
+        res.push(arr.slice(index, index + size));
+        index += size;
+    }
+
+    return res;
+}
