@@ -2,7 +2,7 @@
 
 class MaxBinaryHeap {
     constructor(){
-        this.values = [41, 39, 33, 18, 27, 12];
+        this.values = [];
     }
     insert(element) {
         this.values.push(element);
@@ -27,4 +27,3 @@ class MaxBinaryHeap {
 
 let heap = new MaxBinaryHeap();
 heap.insert(55);
-
