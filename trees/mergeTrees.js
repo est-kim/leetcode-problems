@@ -13,56 +13,77 @@
 
 // source: https://leetcode.com/problems/merge-two-binary-trees/
 
+var mergeTrees = function (root1, root2) {
+  const traversed1 = [],
+    queue1 = [];
+  const traversed2 = [],
+    queue2 = [];
 
-var mergeTrees = function(root1, root2) {
-    const traversed1 = [], queue1 = [];
-    const traversed2 = [], queue2 = [];
-
-    function traverse(root, traversedArr, queue) {
-        let current = root;
-        queue.push(current);
-        while (queue.length !== 0) {
-            current = queue.shift();
-            if (current) {
-                traversedArr.push(current.val);
-                queue.push(current.left);
-                queue.push(current.right);
-            } else {
-                traversedArr.push(null);
-            }
-        }
-        return traversedArr;
+  function traverse(root, traversedArr, queue) {
+    let current = root;
+    queue.push(current);
+    while (queue.length !== 0) {
+      current = queue.shift();
+      if (current) {
+        traversedArr.push(current.val);
+        queue.push(current.left);
+        queue.push(current.right);
+      } else {
+        traversedArr.push(null);
+      }
     }
+    return traversedArr;
+  }
 
-    traverse(root1, traversed1, queue1);
-    traverse(root2, traversed2, queue2);
+  traverse(root1, traversed1, queue1);
+  traverse(root2, traversed2, queue2);
 
-    const newTree = buildTree(newTree, traversed1, traversed2, 0);
+  const newTree = buildTree(newTree, traversed1, traversed2, 0);
 
-    return newTree;
+  return newTree;
 };
 
 function TreeNode(val, left, right) {
-    this.val = (val === undefined ? 0 : val);
-    this.left = (left === undefined ? null : left);
-    this.right = (right === undefined ? null : right);
+  this.val = val === undefined ? 0 : val;
+  this.left = left === undefined ? null : left;
+  this.right = right === undefined ? null : right;
 }
 
 function buildTree(newTree, traversed1, traversed2, index) {
-    if (index >= traversed1.length) {
-        return null;
-    }
+  if (index >= traversed1.length) {
+    return null;
+  }
 
-    const value1 = traversed1[index];
-    const value2 = traversed2[index];
+  const value1 = traversed1[index];
+  const value2 = traversed2[index];
 
-    if (value1 === null && value2 === null) {
-        return null;
-    }
+  if (value1 === null && value2 === null) {
+    return null;
+  }
 
-    const newNode = new TreeNode(newTree[index]);
-    newNode.left = buildTree(newTree, traversed1, traversed2, 2 * index + 1);
-    newNode.right = buildTree(newTree, traversed1, traversed2, 2 * index + 2);
+  const newNode = new TreeNode(newTree[index]);
+  newNode.left = buildTree(newTree, traversed1, traversed2, 2 * index + 1);
+  newNode.right = buildTree(newTree, traversed1, traversed2, 2 * index + 2);
 
-    return newNode;
+  return newNode;
 }
+
+// improved recursive solution
+
+var mergeTrees2 = function (root1, root2) {
+  // Base case to return null as result of having both root1, root2 null
+  if (!root1 && !root2) {
+    return null;
+  }
+
+  const val1 = root1 ? root1.val : 0;
+  const val2 = root2 ? root2.val : 0;
+
+  const root = new TreeNode(val1 + val2);
+  root.left = mergeTrees(root1 ? root1.left : null, root2 ? root2.left : null);
+  root.right = mergeTrees(
+    root1 ? root1.right : null,
+    root2 ? root2.right : null
+  );
+  return root;
+};
