@@ -7,7 +7,7 @@
 
 var longestCommonPrefix = function(strs) {
     if (strs.length === 1) return strs[0];
-    let res = strs[0]; // "flower"
+    let res = strs[0]; 
 
     for (let word of strs) {
         for (let i = res.length - 1; i >= 0; i--) {
