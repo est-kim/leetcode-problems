@@ -11,6 +11,7 @@ var threeSum = function(nums) {
     const triplets = [];
 
     for (let i = 0; i < nums.length - 2; i++) {
+        // making sure result doesn't contain duplicate triplets
         if (nums[i] != nums[i-1]) {
             let left = i + 1;
             let right = nums.length - 1;
@@ -19,6 +20,7 @@ var threeSum = function(nums) {
                 const currentSum = nums[i] + nums[left] + nums[right];
                 if (currentSum === 0) {
                     triplets.push([nums[i], nums[left], nums[right]]);
+                    // making sure result doesn't contain duplicate triplets
                     while (nums[left] === nums[left + 1]) left++;
                     while (nums[right] === nums[right - 1]) right--;
                     left++;
@@ -34,3 +36,12 @@ var threeSum = function(nums) {
 
     return triplets;
 };
+
+// time complexity: O(n^2)
+// sorting operation os O(n log n), but outer loop is O(n) because it
+// iterates over the array once. The inner while loop worst case can
+// iterate over the rest of the array so nested loop bcomes O(n^2)
+
+// space complexity: O(n)
+// due to creating another array where worst case, additional space used
+// is proportional to length of n
