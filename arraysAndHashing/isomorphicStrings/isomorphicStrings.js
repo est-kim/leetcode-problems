@@ -9,40 +9,11 @@
 
 // source: https://leetcode.com/problems/isomorphic-strings/
 
-// first iteration - debugging needed
+// first iteration
 var isIsomorphic = function(s, t) {
-    // const objS = {}, objT = {};
-
-    // function makeObject (string, object) {
-    //     for (let i = 0; i < string.length; i++) {
-    //         object[string[i]] = (object[string[i]] || 0) + 1;
-    //     };
-    // }
-
-    // makeObject(s, objS);
-    // makeObject(t, objT);
-
-    // console.log(objS);
-    // console.log(objT);
-
-    // const objSvalues = Object.values(objS);
-    // const objTvalues = Object.values(objT);
-
-    // console.log(objSvalues);
-    // console.log(objTvalues)
-
-    // for (let i = 0; i < objSvalues.length; i++) {
-    //     if (objSvalues[i] !== objTvalues[i]) return false;
-    // }
-
-    // return true;
-
     const obj1 = {};
     const obj2 = {};
     let p1 = 0;
-
-    // {"b": "a"}
-
 
     for (let i = 0; i < s.length; i++) {
         if (obj1[s[i]] === undefined) {
@@ -52,18 +23,37 @@ var isIsomorphic = function(s, t) {
             obj2[t[i]] = s[i]
         }
     }
-    console.log(obj1)
-    console.log(Object.keys(obj1).length)
-    console.log(obj2)
-    console.log(Object.keys(obj2).length)
+
     while (p1 < s.length) {
-        if ((t[p1] !== obj1[s[p1]]) &&
-        (s[p1] !== obj2[t[p1]]) &&
+        if ((t[p1] !== obj1[s[p1]]) ||
+        (s[p1] !== obj2[t[p1]]) ||
         (Object.keys(obj1).length !== Object.keys(obj2).length)
         ) return false;
         p1++;
     }
 
     return true;
-
 };
+// space: O(n), time: O(n)
+
+// second iteration
+var isIsomorphic2 = function(s, t) {
+    const mapS = new Map();
+    const mapT = new Map();
+
+    for (let i = 0; i < s.length; i++) {
+        const charS = s[i];
+        const charT = t[i];
+
+        if ((!mapS.has(charS)) && (!mapT.has(charT))) {
+            mapS.set(charS, charT);
+            mapT.set(charT, charS);
+        } else if (mapS.get(charS) !== charT || mapT.get(charS) !== charS) {
+            return false;
+        }
+    }
+
+    return true;
+};
+
+// space: O(n), time: O(k)
