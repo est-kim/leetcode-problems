@@ -24,5 +24,5 @@ var numRescueBoats = function(people, limit) {
     return boats;
 };
 
-// time complexity: O(n log n)
+// time complexity: O(n log n) due to sorting
 // space complexity: O(n)
