@@ -7,24 +7,26 @@
 
 // source: https://leetcode.com/problems/find-the-difference-of-two-arrays
 
+var findDifference = function (nums1, nums2) {
+  const res1 = [];
+  const res2 = [];
+  let set1 = new Set(nums1);
+  let set2 = new Set(nums2);
 
-var findDifference = function(nums1, nums2) {
-    const res1 = []
-    const res2 = []
-    let set1 = new Set(nums1)
-    let set2 = new Set(nums2)
+  set1.forEach((element) => {
+    if (!set2.has(element)) {
+      res1.push(element);
+    }
+  });
 
-    set1.forEach(element => {
-        if (!set2.has(element)) {
-            res1.push(element)
-        }
-    })
+  set2.forEach((element) => {
+    if (!set1.has(element)) {
+      res2.push(element);
+    }
+  });
 
-    set2.forEach(element => {
-        if (!set1.has(element)) {
-            res2.push(element)
-        }
-    })
-
-    return [res1, res2]
+  return [res1, res2];
 };
+
+// time complexity: O(n)
+// space complexity: O(n)
