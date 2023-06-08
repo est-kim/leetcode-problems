@@ -18,3 +18,17 @@ const findDisappearedNumbers = function(nums) {
     }
     return arr;
 };
+
+//2nd time trying
+const findDisappearedNumbers2 = function(nums) {
+    const res = [];
+    let set = new Set(nums);
+    let i = 1;
+    while (i <= nums.length) {
+        if (!set.has(i)) {
+            res.push(i)
+        }
+        i++;
+    }
+    return res;
+};
