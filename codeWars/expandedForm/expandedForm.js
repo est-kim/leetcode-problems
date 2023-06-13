@@ -23,4 +23,4 @@ function expandedForm(num) {
       }
     }
     return res;
-  }
+  };
