@@ -9,6 +9,7 @@
 // source: https://www.codewars.com/kata/5842df8ccbd22792a4000245/train/javascript
 
 // first iteration
+
 function expandedForm(num) {
     let string = num.toString().split('');
     console.log(string)
