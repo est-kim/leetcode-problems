@@ -8,20 +8,23 @@
 
 // source: https://www.codewars.com/kata/5842df8ccbd22792a4000245/train/javascript
 
-// first iteration
-
 function expandedForm(num) {
     let string = num.toString().split('');
-    console.log(string)
     let res = "";
     for (let i = 0; i < string.length; i++) {
-      if (i !== string.length - 1) {
-        res += string[i].padEnd(string.length,'0') + ` + `;
+      if (i !== string.length - 1 && string[i] !== '0') {
+        res += string[i].padEnd(string.length - i,'0') + ` + `;
       } else if (string[i] == 0){
         continue;
       } else {
         res += string[i];
       }
     }
+    if (res.endsWith(' ')) {
+      return res.substring(0, res.length - 3)
+    }
     return res;
   };
+
+// time complexity: O(n^2)
+// space complexity: O(n)
