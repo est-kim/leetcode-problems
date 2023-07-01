@@ -40,3 +40,27 @@ function removeDuplicates(head) {
 
 // time complexity: O(n^2)
 // space complexity: O(1)
+
+// 2nd iteration
+function removeDuplicates2(head) {
+  if (head === null) return null;
+
+  let curr = head;
+  let prev = null;
+  let values = new Set();
+
+  while (curr !== null) {
+    if (values.has(curr.data)) {
+      prev.next = curr.next;
+    } else {
+      values.add(curr.data);
+      prev = curr;
+    }
+    curr = curr.next;
+  }
+  return head;
+}
+
+
+// time complexity: O(n)
+// space complexity: O(1)
