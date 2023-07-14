@@ -24,5 +24,5 @@ def merge_lists(head_1, head_2):
   return dummy_head.next
 
 
-time complexity: O(min(n,m))
-space complexity: O(1)
+# time complexity: O(min(n,m))
+# space complexity: O(1)
