@@ -23,7 +23,7 @@ def has_path_2(graph, src, dst):
     return True
 
   for neighbor in graph[src]:
-    if has_path(graph, neighbor, dst) == True:
+    if has_path_2(graph, neighbor, dst) == True:
       return True
 
   return False
