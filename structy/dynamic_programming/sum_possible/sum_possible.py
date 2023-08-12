@@ -25,3 +25,7 @@ def _sum_possible(amount, numbers, memo):
 
   memo[amount] = False
   return False
+
+
+# time: O(a * n) a = amount, n = length of num
+# space: O(a)
