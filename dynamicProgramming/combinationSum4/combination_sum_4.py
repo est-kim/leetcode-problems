@@ -6,10 +6,10 @@
 # source: https://leetcode.com/problems/combination-sum-iv/
 
 class Solution:
-    def combinationSum4(self, nums: List[int], target: int) -> int:
+    def combinationSum4(self, nums: int, target: int) -> int:
         return self._combinationSum4(nums, target, {})
 
-    def _combinationSum4(self, nums: List[int], target: int, memo: dict) -> int:
+    def _combinationSum4(self, nums: int, target: int, memo: dict) -> int:
         if target in memo:
             return memo[target]
 
